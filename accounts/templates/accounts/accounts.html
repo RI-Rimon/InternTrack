@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | InternTrack</title>
+</head>
+<body>
+
+    <h1>My Profile</h1>
+
+    <p>Welcome, {{ request.user.username }}!</p>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Update Profile</button>
+    </form>
+
+    <hr>
+
+    <a href="{% url 'applications:dashboard' %}">
+        Back to Dashboard
+    </a>
+
+</body>
+</html>
